@@ -57,7 +57,7 @@ export default function Welcome() {
                     maxLength={15}
                 />
                 <BlueButton style={{width: 320}} title={'Entrar'} onPress={openCreateAccount}/>
-                <TouchableOpacity onPress={openRecoverPassword}>
+                <TouchableOpacity onPress={() => navigation.navigate('Reset')}>
                     <Text style={styles.panelContent_form_brnRecover}>
                         Esqueci a senha!
                     </Text>

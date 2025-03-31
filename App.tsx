@@ -5,6 +5,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Welcome from './app/pages/Welcome/Welcome';
 import Register from "./app/pages/Register/Register";
 import {RootStackParamList} from "./app/navigation/types";
+import ResetPassword from './app/pages/ResetPassword/ResetPassword';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -21,6 +22,11 @@ export default function App() {
                     <Stack.Screen
                         name="Register"
                         component={Register}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="Reset"
+                        component={ResetPassword}
                         options={{ headerShown: false }}
                     />
                 </Stack.Navigator>
