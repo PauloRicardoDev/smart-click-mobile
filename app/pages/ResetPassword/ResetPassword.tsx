@@ -5,6 +5,8 @@ import InputComponent from "../../components/InputComponent/InputComponent";
 import GreenBorderButton from "../../components/buttonsComponents/GreenBorderButton";
 import BlueBorderButton from "../../components/buttonsComponents/BlueBorderButton";
 import BlueButton from "../../components/buttonsComponents/BlueButton";
+import { Modalize } from 'react-native-modalize';
+import {useRef} from "react";
 
 
 const ResetPassword = ({}) => {
@@ -17,6 +19,26 @@ const ResetPassword = ({}) => {
         setShowResetForm(!showResetForm);
     };
 
+    const modalizeRef = useRef<Modalize>(null);
+    const onOpen = () => {
+        modalizeRef.current?.open();
+    };
+
+    const PanelContent = () => (
+        <View style={styles.panelContent}>
+            <Text style={styles.redefineText}>Senha alterada com sucesso!</Text>
+            <Image
+                style={styles.panelContent_img}
+                source={require('../../../assets/images/recoverPasswordImage.png')}
+            />
+            <Text style={styles.panelContentText}>Parabéns! Sua senha foi recuperada com sucesso. Agora você pode
+                acessar sua conta com tranquilidade. Caso precise de mais alguma ajuda, estamos à disposição!</Text>
+            <Image
+                style={styles.panelContent_imgFooter}
+                source={require('../../../assets/images/scLogoRGB.png')}
+            />
+        </View>
+    );
 
     return (
         <>
@@ -42,7 +64,7 @@ const ResetPassword = ({}) => {
                 {!showResetForm && (
                     <>
                         <InputComponent keyboardType="email-address" placeholder='Email'/>
-                        <BlueButton title='Enviar' onPress={sendToken} style={{width: 320}}/>
+                        <BlueButton title='Enviar' onPress={onOpen} style={{width: 320}}/>
                     </>
                 )}
 
@@ -66,6 +88,13 @@ const ResetPassword = ({}) => {
                 </Text>
                 <GreenBorderButton title='Criar conta' onPress={handlePress} style={{width: 320}}/>
                 <BlueBorderButton title='Fazer login' onPress={handlePress} style={{width: 320}}/>
+                <Modalize
+                    ref={modalizeRef}
+                    adjustToContentHeight={true} // Ajusta altura automaticamente
+                    handlePosition="inside" // Alça do modal dentro do conteúdo
+                >
+                    <PanelContent />
+                </Modalize>
             </View>
         </>
     );
