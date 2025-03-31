@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import ReturnButton from "../../components/ReturnButtonComponents/ReturnButton";
 import InputComponent from "../../components/InputComponent/InputComponent";
 import BlueButton from "../../components/buttonsComponents/BlueButton";
@@ -15,134 +15,141 @@ const UpdateUserData = ({}) => {
   const sendToken = () => {
     setShowResetForm(!showResetForm);
   };
+  
+  
 
   return (
     <>
-     <View style={styles.container}>
-      <Image
-          source={require('../../../assets/images/backgroundInitialScreens.png')}
-          style={styles.img}
-      />
-      <View style={styles.returnButton}>
-          <ReturnButton size={45} onPress={sendToken}/>
-      </View>
-    </View>
-        <View style={styles.containerRedefine}>
-          <Text 
-              style={styles.redefineText}>
-              Redefinir sua senha
-          </Text>
-          <Text 
-              style={styles.redefineSubText}>
-              Preencha os campos abaixo com atenção
-          </Text>
+        <View style={styles.container_form}>
+            <Image
+                source={require('../../../assets/images/backgroundInitialScreens.png')}
+                style={styles.img}
+            />
 
-          {!showResetForm &&(
-          <>
-          <InputComponent keyboardType="email-address" placeholder='Email'/>
-          <BlueButton title='Enviar' onPress={sendToken} style={{width: 320}}/>
-          </>
-        )}
+          <KeyboardAvoidingView
+              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+              style={styles.keyboardAvoidingView}
+          >
+              <ScrollView
+                  contentContainerStyle={styles.scrollContent}
+                  keyboardShouldPersistTaps="handled"
+                  showsVerticalScrollIndicator={false}
+              >
 
-          {showResetForm && (
-            <>
-              <Text style={styles.redefineSubTextEmail}>
-              Um código foi enviado para o seu e-mail. Por favor, insira o código abaixo para redefinir sua senha.
-              </Text>
-              <InputComponent placeholder='Código de recuperação'/>
-              <InputComponent secureTextEntry={true} placeholder='Nova senha'/>
-              <InputComponent secureTextEntry={true} placeholder='Confirme a nova senha'/>
-              <BlueButton title='Trocar senha' onPress={sendToken} style={{width: 320}}/>
-            </>
-          )
-        }
+            <Text style={styles.title}>Atualizar dados</Text>
+            <Text style={styles.subtitle}>Preencha os campos abaixo com atenção</Text>
 
-          <Text 
-              style={styles.redefineSubText}>
-              Outras opções
-          </Text>
-          <GreenBorderButton title='Criar conta' onPress={handlePress} style={{width: 320}} />
-          <BlueBorderButton title='Fazer login' onPress={handlePress} style={{width: 320}} />
-     </View>
-     </>
+            <InputComponent
+                placeholder="Digite seu nome completo"
+                keyboardType="default"
+                maxLength={200}
+            />
+            <InputComponent
+                placeholder="Digite seu e-mail"
+                keyboardType="email-address"
+                maxLength={150}
+            />
+            <InputComponent
+                placeholder="Digite uma senha"
+                keyboardType="default"
+                secureTextEntry={true}
+                maxLength={15}
+            />
+            <InputComponent
+                placeholder="Confirme a senha"
+                keyboardType="default"
+                secureTextEntry={true}
+                maxLength={15}
+            />
+            <BlueButton style={{width: 320}} title={'Finalizar edição'} />
+        </ScrollView>
+        </KeyboardAvoidingView>
+        </View>
+
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-img: {
-  width: '100%',
-  height: '100%',
-  resizeMode: 'cover',
-  position: 'absolute',
-},
-
-returnButton: {
-  marginTop: 32,
-  marginLeft: 32, 
-  position: 'absolute', 
-  top: 0, 
-  left: 0,
-},
-
-container: {
-  flex: 1,
-  position: 'relative',
-},
-
-containerRedefine: {
-  width: '100%',
-  height: '100%',
-  alignItems: 'center',
-  justifyContent: 'center',
-  position: 'absolute',
-  gap: 16,
-},
-
-redefineText:{
-  fontSize: 24,
-  fontWeight: 'bold',
-  color: '#F6B042',
+  img: {
+      width: '100%',
+      height: '100%',
+      resizeMode: 'cover',
+      position: 'absolute',
+  },
+  returnButton: {
+      marginTop: 32,
+      marginLeft: 32,
+      position: 'absolute',
+      top: 0,
+      left: 0,
   },
 
- redefineSubText:{
-  fontSize: 14,
-  color: '#1C5790',
-},
+  keyboardAvoidingView: {
+    flex: 1,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 45,
+    // backgroundColor: 'red',
+    gap: 16
+  },
 
-redefineSubTextEmail:{
-  color: '#8CA1A9',
-  width: 320,
-  textAlign: 'center',
-},
-
-panelContent:{
-  marginTop: 64,
-  width: '100%',
-  height: '100%',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: 16,
-},
-
-panelContentText:{
-  color: '#1C5790',
-  width: 320,
-  textAlign: 'center',
-  fontWeight: 'bold',
-},
-
-panelContent_img:{
-  width: 284,
-  height: 279,
-  margin: 25,
-},
-
-panelContent_imgFooter: {
-  marginTop: 64,
-  bottom: 0,
-}
-
-});
-
-
-export default UpdateUserData;
+  container: {
+      flex: 1,
+      position: 'relative',
+  },
+  container_form: {
+      width: '100%',
+      height: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'absolute',
+      gap: 16,
+  },
+  title: {
+      fontSize: 32,
+      fontWeight: 'bold',
+      color: '#F6B042',
+  },
+  subtitle: {
+      fontSize: 14,
+      color: '#1C5790',
+      marginBottom: 24,
+  },
+  
+  
+  panelContent: {
+      width: '100%',
+      height: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: 100,
+      gap: 30,
+  },
+  
+  panelContent_title:{
+      width: 300,
+      textAlign: 'center',
+      fontSize: 25,
+      fontWeight: 'bold',
+      color: '#96B562',
+  },
+  panelContent_img: {
+      width: 300,
+      height: 300,
+  },
+  panelContent_subtitle:{
+      fontSize: 16,
+      color: '#1C5790',
+      textAlign: 'center',
+      width: 300,
+  },
+  
+  });
+  
+  
+  export default UpdateUserData;

@@ -92,6 +92,19 @@ const styles = StyleSheet.create({
         position: 'relative',
     },
 
+    keyboardAvoidingView: {
+        flex: 1,
+      },
+      scrollContent: {
+        flexGrow: 1,
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginVertical: 75,
+        // backgroundColor: 'red',
+        gap: 16
+      },
+
     containerRedefine: {
         width: '100%',
         height: '100%',
