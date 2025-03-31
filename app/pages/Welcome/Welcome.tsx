@@ -2,6 +2,10 @@ import {Image, Text, View, StyleSheet, TouchableOpacity, Linking, Alert} from 'r
 import GreenBorderButton from "../../components/buttonsComponents/GreenBorderButton";
 import BlueButton from "../../components/buttonsComponents/BlueButton";
 import BlueBorderButton from "../../components/buttonsComponents/BlueBorderButton";
+import {useRef} from "react";
+import {Modalize} from "react-native-modalize";
+import InputComponent from "../../components/InputComponent/InputComponent";
+import {GestureHandlerRootView} from "react-native-gesture-handler";
 
 export default function Welcome() {
 
@@ -19,22 +23,82 @@ export default function Welcome() {
     const openRecoverPassword = (): void => {
     };
 
-    return (
-        <View style={styles.container}>
+    const modalizeRef = useRef<Modalize>(null);
+
+    const onOpen = () => {
+        modalizeRef.current?.open();
+    };
+
+    const PanelContent = () => (
+        <View style={styles.panelContent}>
             <Image
-                source={require('../../../assets/images/background_welcome_pag.png')}
-                style={styles.img}
+                source={require('../../../assets/images/logo.png')}
+                style={ styles.panelContent_img}
             />
-            <View style={styles.container_info}>
-                <Text style={styles.container_info_title}>Smart Click</Text>
-                <Text style={styles.container_info_subtitle}>Mais controle, mais economia e mais sustentabilidade.</Text>
-                <GreenBorderButton style={{width: 320}} title={'Saiba mais'} onPress={handleOpenLink}/>
-                <View style={styles.container_info_btns}>
-                    <BlueButton style={{width: 155}} title={'Entrar'} onPress={handleOpenLink}/>
-                    <BlueBorderButton style={{width: 155}} title={'Criar Conta'} onPress={openCreateAccount}/>
-                </View>
+            <Text style={styles.panelContent_title}>Acesse sua conta</Text>
+            <Text style={styles.panelContent_subtitle}>Bem-vindo de volta, uma experiência incrível te aguarda.</Text>
+            <View style={styles.panelContent_form}>
+                <InputComponent
+                    placeholder="Digite seu e-mail"
+                    keyboardType="email-address"
+                    maxLength={150}
+                />
+                <InputComponent
+                    placeholder="Digite sua senha"
+                    keyboardType="default"
+                    secureTextEntry={true}
+                    maxLength={15}
+                />
+                <BlueButton style={{width: 320}} title={'Entrar'} onPress={openCreateAccount}/>
+                <TouchableOpacity onPress={openRecoverPassword}>
+                    <Text style={styles.panelContent_form_brnRecover}>
+                        Esqueci a senha!
+                    </Text>
+                </TouchableOpacity>
+                <GreenBorderButton style={{width: 320}} title={'Criar Conta'} onPress={openCreateAccount}/>
             </View>
         </View>
+    );
+
+    return (
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <View style={styles.container}>
+                <Image
+                    source={require('../../../assets/images/background_welcome_pag.png')}
+                    style={styles.img}
+                />
+                <View style={styles.container_info}>
+                    <Text style={styles.container_info_title}>Smart Click</Text>
+                    <Text style={styles.container_info_subtitle}>
+                        Mais controle, mais economia e mais sustentabilidade.
+                    </Text>
+                    <GreenBorderButton
+                        style={{ width: 320 }}
+                        title={'Saiba mais'}
+                        onPress={handleOpenLink}
+                    />
+                    <View style={styles.container_info_btns}>
+                        <BlueButton
+                            style={{ width: 155 }}
+                            title={'Entrar'}
+                            onPress={onOpen}
+                        />
+                        <BlueBorderButton
+                            style={{ width: 155 }}
+                            title={'Criar Conta'}
+                            onPress={openCreateAccount}
+                        />
+                    </View>
+                </View>
+                <Modalize
+                    ref={modalizeRef}
+                    adjustToContentHeight={true} // Ajusta altura automaticamente
+                    handlePosition="inside" // Alça do modal dentro do conteúdo
+                >
+                    <PanelContent />
+                </Modalize>
+            </View>
+        </GestureHandlerRootView>
     );
 }
 
