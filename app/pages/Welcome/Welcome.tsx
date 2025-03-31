@@ -29,7 +29,6 @@ export default function Welcome() {
     };
     const openRecoverPassword = (): void => {
     };
-
     // Modalize
     const navigation = useNavigation<WelcomeScreenNavigationProp>();
     const modalizeRef = useRef<Modalize>(null);
