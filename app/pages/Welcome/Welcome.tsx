@@ -6,10 +6,18 @@ import {useRef} from "react";
 import {Modalize} from "react-native-modalize";
 import InputComponent from "../../components/InputComponent/InputComponent";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
+import {useNavigation} from "@react-navigation/native";
+import {NativeStackNavigationProp} from "@react-navigation/native-stack";
+import {RootStackParamList} from "../../navigation/types";
+
+type WelcomeScreenNavigationProp = NativeStackNavigationProp<
+    RootStackParamList,
+    'Welcome'
+>;
 
 export default function Welcome() {
 
-    // link - landing page
+    // links
     const handleOpenLink = (): void => {
         const url = 'https://www.smartclick.eco.br/#form';
 
@@ -17,14 +25,14 @@ export default function Welcome() {
             Alert.alert('Erro', 'Não foi possível abrir o link.');
         });
     };
-    // link - register page
     const openCreateAccount = (): void => {
     };
     const openRecoverPassword = (): void => {
     };
 
+    // Modalize
+    const navigation = useNavigation<WelcomeScreenNavigationProp>();
     const modalizeRef = useRef<Modalize>(null);
-
     const onOpen = () => {
         modalizeRef.current?.open();
     };
@@ -55,7 +63,11 @@ export default function Welcome() {
                         Esqueci a senha!
                     </Text>
                 </TouchableOpacity>
-                <GreenBorderButton style={{width: 320}} title={'Criar Conta'} onPress={openCreateAccount}/>
+                <GreenBorderButton
+                    style={{width: 320}}
+                    title={'Criar Conta'}
+                    onPress={() => navigation.navigate('Register')}
+                />
             </View>
         </View>
     );
@@ -86,7 +98,7 @@ export default function Welcome() {
                         <BlueBorderButton
                             style={{ width: 155 }}
                             title={'Criar Conta'}
-                            onPress={openCreateAccount}
+                            onPress={() => navigation.navigate('Register')}
                         />
                     </View>
                 </View>
@@ -144,7 +156,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginBottom: 8
     },
-
     // styles do painel
     panelContent: {
         alignItems: 'center',

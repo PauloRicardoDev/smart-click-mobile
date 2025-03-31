@@ -2,15 +2,22 @@ import { Image, ScrollView, StyleSheet, Text, View, KeyboardAvoidingView, Platfo
 import ReturnButton from "../../components/ReturnButtonComponents/ReturnButton";
 import InputComponent from "../../components/InputComponent/InputComponent";
 import BlueButton from "../../components/buttonsComponents/BlueButton";
+import {useNavigation} from "@react-navigation/native";
+import {NativeStackNavigationProp} from "@react-navigation/native-stack";
+import {RootStackParamList} from "../../navigation/types";
+
+
+type RegisterScreenNavigationProp = NativeStackNavigationProp<
+    RootStackParamList,
+    'Register'
+>;
 
 export default function Register() {
 
     const create = () => {
 
     }
-    const rollback = (): void => {
-
-    };
+    const navigation = useNavigation<RegisterScreenNavigationProp>();
 
     return (
         <View style={styles.mainContainer}>
@@ -20,7 +27,7 @@ export default function Register() {
             />
 
             <View style={styles.returnButtonContainer}>
-                <ReturnButton onPress={rollback} size={45} />
+                <ReturnButton onPress={() => navigation.navigate('Welcome')} size={45} />
             </View>
 
             <KeyboardAvoidingView
@@ -82,6 +89,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     returnButtonContainer: {
+        marginTop: 20,
         position: 'absolute',
         top: Platform.OS === 'ios' ? 50 : 20,
         left: 20,
