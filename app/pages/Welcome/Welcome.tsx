@@ -103,8 +103,8 @@ export default function Welcome() {
                 </View>
                 <Modalize
                     ref={modalizeRef}
-                    adjustToContentHeight={true} // Ajusta altura automaticamente
-                    handlePosition="inside" // Alça do modal dentro do conteúdo
+                    adjustToContentHeight={true}
+                    handlePosition="inside"
                 >
                     <PanelContent />
                 </Modalize>
