@@ -30,14 +30,14 @@ export default function HomeTeste() {
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
+        backgroundColor: "#FFFFFF",
+
     },
     container: {
-        flex: 1, // Ocupa toda a tela
         height: '100%',
-        backgroundColor: "F5F5F5",
+        backgroundColor: "#FFFFFF",
     },
     userPhoto:{
-        position: 'absolute',
         top: 100,
         left: 100,
         width: 100,
