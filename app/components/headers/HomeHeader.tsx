@@ -1,10 +1,15 @@
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, ViewStyle, TextStyle, ImageStyle } from "react-native";
 import { UserPhoto } from "../UserComponents/UserPhoto";
 import { useState } from "react";
 import { UserDTO } from "../../dtos/userDto";
 import { Notification, Edit } from 'iconsax-react-native';
 
-export function HomeHeader() {
+// Interface para as props do componente
+interface HomeHeaderProps {
+  showProfileButton?: boolean; // Propriedade booleana opcional
+}
+
+export function HomeHeader({ showProfileButton = true }: HomeHeaderProps) {
   // User mock => TODO: Remover ao integrar com o backend
   const [user, setUser] = useState<UserDTO>({
     id: '1',
@@ -14,46 +19,82 @@ export function HomeHeader() {
     role: 'Administrador',
   })
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.contentContainer}>
+   // Estilos dinâmicos baseados na prop showProfileButton
+   const dynamicStyles = {
+    container: {
+      ...styles.container,
+      padding: showProfileButton ? 20 : 15,
+    } as ViewStyle,
+    topRightContainer: {
+      ...styles.topRightContainer,
+      marginBottom: showProfileButton ? 15 : 0,
+    } as ViewStyle,
+    rightContainer: {
+      ...styles.rightContainer,
+      justifyContent: showProfileButton ? 'space-between' : 'center',
+    } as ViewStyle,
+    userPhoto: {
+      ...styles.userPhoto,
+      width: showProfileButton ? 100 : 80,
+      height: showProfileButton ? 105 : 85,
+    } as ImageStyle,
+    userName: {
+      ...styles.userName,
+      fontSize: showProfileButton ? 22 : 18,
+    } as TextStyle,
+    role: {
+      ...styles.role,
+      fontSize: showProfileButton ? 14 : 12,
+    } as TextStyle,
+    notificationButton: {
+      ...styles.notificationButton,
+      width: showProfileButton ? 48 : 40,
+      height: showProfileButton ? 48 : 40,
+      borderRadius: showProfileButton ? 24 : 20,
+    } as ViewStyle
+  };
 
+  return (
+    <View style={dynamicStyles.container}>
+      <View style={styles.contentContainer}>
         {/* Lado esquerdo - apenas a foto */}
         <View style={styles.leftContainer}>
           <UserPhoto
-            style={styles.userPhoto}
+            style={dynamicStyles.userPhoto}
             source={require('../../../assets/images/profile/photo-test.png')}
           />
         </View>
-
+        
         {/* Lado direito - nome, cargo, notificação e botão de perfil */}
-        <View style={styles.rightContainer}>
-          <View style={styles.topRightContainer}>
+        <View style={dynamicStyles.rightContainer}>
+          <View style={dynamicStyles.topRightContainer}>
             {/* Nome e cargo do usuário */}
             <View style={styles.userInfo}>
-              <Text style={styles.userName}>
+              <Text style={dynamicStyles.userName}>
                 {user.name}
               </Text>
-              <Text style={styles.role}>
+              <Text style={dynamicStyles.role}>
                 {user.role}
               </Text>
             </View>
-
+            
             {/* Botão de notificação */}
-            <TouchableOpacity style={styles.notificationButton}>
+            <TouchableOpacity style={dynamicStyles.notificationButton}>
               <Notification
-                size="24"
+                size={showProfileButton ? 24 : 20}
                 color="#2C2C2C"
                 variant="TwoTone"
               />
             </TouchableOpacity>
           </View>
-
-          {/* Botão Meu perfil */}
-          <TouchableOpacity style={styles.profileButton}>
-            <Text style={styles.profileButtonText}>Meu perfil</Text>
-            <Edit size="20" color="#1C5790" variant="TwoTone" />
-          </TouchableOpacity>
+          
+          {/* Botão Meu perfil - exibido condicionalmente */}
+          {showProfileButton && (
+            <TouchableOpacity style={styles.profileButton}>
+              <Text style={styles.profileButtonText}>Meu perfil</Text>
+              <Edit size="20" color="#1C5790" variant="TwoTone" />
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </View>
@@ -127,3 +168,5 @@ const styles = StyleSheet.create({
     color: '#1C5790',
   }
 })
+
+
