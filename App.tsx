@@ -6,7 +6,7 @@ import Welcome from './app/pages/Welcome/Welcome';
 import Register from "./app/pages/Register/Register";
 import {RootStackParamList} from "./app/navigation/types";
 import ResetPassword from './app/pages/ResetPassword/ResetPassword';
-import HomeTeste from './app/pages/HomeTeste/HomeTeste';
+import NewEquipament from './app/pages/NewEquipament/NewEquipament'
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -14,7 +14,7 @@ export default function App() {
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName="Home">
+                <Stack.Navigator initialRouteName="Welcome">
                     <Stack.Screen
                         name="Welcome"
                         component={Welcome}
@@ -31,8 +31,8 @@ export default function App() {
                         options={{ headerShown: false }}
                     />
                     <Stack.Screen
-                        name="Home"
-                        component={HomeTeste}
+                        name="NewEquipament"
+                        component={NewEquipament}
                         options={{ headerShown: false }}
                     />
                 </Stack.Navigator>
