@@ -11,7 +11,7 @@ export default function HomeTeste() {
                 
 
                 {/* Teste: Header */}
-                <HomeHeader/>
+                <HomeHeader showProfileButton={true} />
                 
                 {/* <Text>HomeTeste</Text> */}
 
