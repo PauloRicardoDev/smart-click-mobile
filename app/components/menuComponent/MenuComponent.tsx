@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
         padding: 20,
-        backgroundColor: '#f7f7f7',
+        backgroundColor: '#f5f5f5',
     },
     menuContainerItem: {
         alignItems: 'center'
