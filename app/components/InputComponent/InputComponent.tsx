@@ -10,6 +10,7 @@ export default function InputComponent(
        maxLength = 100,
        value,
        onChangeText,
+       style
     }:{
         placeholder?: string;
         keyboardType?: any;
@@ -17,6 +18,7 @@ export default function InputComponent(
         maxLength?: number;
         value?: string;
         onChangeText?: (text: string) => void;
+        style?: any;
     }){
 
     const [isFocused, setIsFocused] = useState(false);
@@ -29,6 +31,7 @@ export default function InputComponent(
                     styles.inputContainer_input,
                     isFocused && styles.focusedInput,
                     secureTextEntry && { paddingRight: 40 },
+                    style,
                 ]}
                 placeholder={placeholder}
                 keyboardType={keyboardType}
