@@ -1,51 +1,26 @@
-import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import {MaterialIcons} from "@expo/vector-icons";
+import { Home2, Buildings, House, ForwardItem } from "iconsax-react-native";
 
 interface MenuProps {
-    title: string;
+    title?: string;
 }
 
 const MenuComponent: React.FC<MenuProps> = ({ ...props }) => {
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            {/* Conteúdo principal da página viria aqui */}
-            <View style={{ flex: 1 }}></View>
-
-            {/* Rodapé fixo */}
-            <View style={{
-                width: '100%',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: 10,
-                backgroundColor: '#fff',
-                borderTopWidth: 1,
-                borderTopColor: '#ccc'
-            }}>
-                <TouchableOpacity style={{ alignItems: 'center' }}>
-                    <MaterialIcons
-                        name={"home"}
-                        size={24}
-                        color="#1C5790"
-                    />
-                    <Text>dddddddd</Text>
+        <SafeAreaView style={styles.container}>
+            <View style={styles.menuContainer}>
+                <TouchableOpacity style={styles.menuContainerItem}>
+                    <Home2 size="32" color="#1C5790" variant="TwoTone" />
+                    <Text style={styles.menuContainerItemText}>Início</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ alignItems: 'center' }}>
-                    <MaterialIcons
-                        name={"home"}
-                        size={24}
-                        color="#1C5790"
-                    />
-                    <Text>dddddddd</Text>
+                <TouchableOpacity style={styles.menuContainerItem}>
+                    <Buildings size="32" color="#1C5790" variant="TwoTone" />
+                    <Text style={styles.menuContainerItemText}>Unidades</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{ alignItems: 'center' }}>
-                    <MaterialIcons
-                        name={"visibility"}
-                        size={24}
-                        color="#1C5790"
-                    />
-                    <Text>dddddddd</Text>
+                <TouchableOpacity style={styles.menuContainerItem}>
+                    <ForwardItem size="32" color="#1C5790" variant="TwoTone" />
+                    <Text style={styles.menuContainerItemText}>Equipa...</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
@@ -53,7 +28,26 @@ const MenuComponent: React.FC<MenuProps> = ({ ...props }) => {
 };
 
 const styles = StyleSheet.create({
-
+    container: {
+        width: '100%',
+        flex: 1,
+        position: 'absolute',
+        bottom: 0
+    },
+    menuContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        padding: 20,
+        backgroundColor: '#f7f7f7',
+    },
+    menuContainerItem: {
+        alignItems: 'center'
+    },
+    menuContainerItemText: {
+        fontSize: 12,
+        color: '#1C5790',
+    }
 });
 
 export default MenuComponent;
