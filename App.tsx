@@ -7,6 +7,7 @@ import Register from "./app/pages/Register/Register";
 import {RootStackParamList} from "./app/navigation/types";
 import ResetPassword from './app/pages/ResetPassword/ResetPassword';
 import NewEquipament from './app/pages/NewEquipament/NewEquipament'
+import HomeMessages from './app/pages/HomeMessages/HomeMessages'
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -33,6 +34,11 @@ export default function App() {
                     <Stack.Screen
                         name="NewEquipament"
                         component={NewEquipament}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="HomeMessages"
+                        component={HomeMessages}
                         options={{ headerShown: false }}
                     />
                 </Stack.Navigator>
