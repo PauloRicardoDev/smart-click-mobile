@@ -1,27 +1,48 @@
 import { View, Text, StyleSheet } from "react-native";
 import MenuComponent from "../../components/menuComponent/MenuComponent";
+import { UserPhoto } from "../../components/UserComponents/UserPhoto";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { HomeHeader } from "../../components/headers/HomeHeader";
 
 export default function HomeTeste() {
     return (
-        <View style={styles.container}>
-            <Text>HomeTeste</Text>
+        <SafeAreaView style={styles.safeArea}>
+            <View style={styles.container}>
+                
 
-            {/* Conteúdo principal - vai ocupar todo o espaço disponível */}
-            <View >
-              <Text>BHSsjvkkjvkjvkjvhj</Text>
+                {/* Teste: Header */}
+                <HomeHeader showProfileButton={true} />
+                
+                {/* <Text>HomeTeste</Text> */}
+
+                {/* Conteúdo principal - vai ocupar todo o espaço disponível */}
+                {/* <View >
+                    <Text>Testando </Text>
+                </View> */}
+
+                {/* Menu fixo na parte inferior */}
+                <MenuComponent title={"Menu"} />
             </View>
-
-            {/* Menu fixo na parte inferior */}
-            <MenuComponent title={"Menu"} />
-        </View>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1, // Ocupa toda a tela
-        height: '100%',
-        backgroundColor: "#ff0000",
+    safeArea: {
+        flex: 1,
+        backgroundColor: "#FFFFFF",
+
     },
+    container: {
+        height: '100%',
+        backgroundColor: "#FFFFFF",
+    },
+    userPhoto:{
+        top: 100,
+        left: 100,
+        width: 100,
+        height: 100,
+        borderRadius: 35,
+    }
 
 });
