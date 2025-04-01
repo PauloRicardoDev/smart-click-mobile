@@ -7,7 +7,15 @@ import BlueBorderButton from "../../components/buttonsComponents/BlueBorderButto
 import BlueButton from "../../components/buttonsComponents/BlueButton";
 import { Modalize } from 'react-native-modalize';
 import {useRef} from "react";
+import {useNavigation} from "@react-navigation/native";
+import {NativeStackNavigationProp} from "@react-navigation/native-stack";
+import {RootStackParamList} from "../../navigation/types";
 
+
+type ResetScreenNavigationProp = NativeStackNavigationProp<
+    RootStackParamList,
+    'Reset'
+>;
 
 const ResetPassword = ({}) => {
     const handlePress = () => {
@@ -23,6 +31,8 @@ const ResetPassword = ({}) => {
     const onOpen = () => {
         modalizeRef.current?.open();
     };
+
+    const navigation = useNavigation<ResetScreenNavigationProp>();
 
     const PanelContent = () => (
         <View style={styles.panelContent}>
@@ -48,7 +58,7 @@ const ResetPassword = ({}) => {
                     style={styles.img}
                 />
                 <View style={styles.returnButton}>
-                    <ReturnButton size={45} onPress={sendToken}/>
+                    <ReturnButton size={45} onPress={() => navigation.navigate('Welcome')}/>
                 </View>
             </View>
             <View style={styles.containerRedefine}>
@@ -64,7 +74,7 @@ const ResetPassword = ({}) => {
                 {!showResetForm && (
                     <>
                         <InputComponent keyboardType="email-address" placeholder='Email'/>
-                        <BlueButton title='Enviar' onPress={onOpen} style={{width: 320}}/>
+                        <BlueButton title='Enviar' onPress={sendToken} style={{width: 320}}/>
                     </>
                 )}
 
@@ -77,7 +87,7 @@ const ResetPassword = ({}) => {
                         <InputComponent placeholder='Código de recuperação'/>
                         <InputComponent secureTextEntry={true} placeholder='Nova senha'/>
                         <InputComponent secureTextEntry={true} placeholder='Confirme a nova senha'/>
-                        <BlueButton title='Trocar senha' onPress={sendToken} style={{width: 320}}/>
+                        <BlueButton title='Trocar senha' onPress={onOpen} style={{width: 320}}/>
                     </>
                 )
                 }
@@ -86,14 +96,15 @@ const ResetPassword = ({}) => {
                     style={styles.redefineSubText}>
                     Outras opções
                 </Text>
-                <GreenBorderButton title='Criar conta' onPress={handlePress} style={{width: 320}}/>
-                <BlueBorderButton title='Fazer login' onPress={handlePress} style={{width: 320}}/>
+                <GreenBorderButton title='Criar conta' onPress={() => navigation.navigate('Welcome')} style={{width: 320}}/>
+                <BlueBorderButton title='Fazer login' onPress={() => navigation.navigate('Welcome')} style={{width: 320}}/>
                 <Modalize
                     ref={modalizeRef}
                     adjustToContentHeight={true} // Ajusta altura automaticamente
                     handlePosition="inside" // Alça do modal dentro do conteúdo
                 >
                     <PanelContent />
+                    
                 </Modalize>
             </View>
         </>
