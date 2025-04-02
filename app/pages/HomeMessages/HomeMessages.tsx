@@ -1,9 +1,8 @@
-import { View, Text, StyleSheet, TextInput, Image, ScrollView, TouchableOpacity } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 import { Notification } from 'iconsax-react-native';
 import { Setting4 } from 'iconsax-react-native';
 import { SearchNormal1 } from 'iconsax-react-native';
-
+import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function HomeMessages() {
     return (
@@ -13,7 +12,7 @@ export default function HomeMessages() {
             <View style={styles.header}>
                 <View style={styles.profileSection}>
                     <Image 
-                        source={require('../../../assets/images/profile.png')}
+                        source={require('../../../assets/images/profile/profile.png')}
                         style={styles.profileImage}
                     />
                     <View style={styles.profileInfo}>
@@ -76,7 +75,7 @@ export default function HomeMessages() {
 const MessageItem = ({ title, subtitle, time }: { title: string; subtitle: string; time: string }) => (
     <TouchableOpacity style={styles.messageItem}>
         <Image 
-            source={require('../../../assets/images/notificaSmart.png')}
+            source={require('../../../assets/images/logo.png')}
             style={styles.messageIcon}
         />
         <View style={styles.messageContent}>
