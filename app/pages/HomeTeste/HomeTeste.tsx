@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+import { HomeHeader } from "../../components/headers/HomeHeader";
 import MenuComponent from "../../components/menuComponent/MenuComponent";
 import { UserPhoto } from "../../components/UserComponents/UserPhoto";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { HomeHeader } from "../../components/headers/HomeHeader";
 
 export default function HomeTeste() {
     return (
