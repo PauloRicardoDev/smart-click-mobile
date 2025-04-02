@@ -18,7 +18,7 @@ export default function App() {
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName="HomeEquipaments">
+                <Stack.Navigator initialRouteName="HomeTeste">
                     <Stack.Screen
                         name="Welcome"
                         component={Welcome}
@@ -48,6 +48,11 @@ export default function App() {
                     <Stack.Screen 
                         name='HomeEquipaments'
                         component={HomeEquipaments}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen 
+                        name='HomeTeste'
+                        component={HomeTeste}
                         options={{ headerShown: false }}
                     />
                 </Stack.Navigator>

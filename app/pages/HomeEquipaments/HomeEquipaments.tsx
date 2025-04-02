@@ -6,6 +6,8 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/types';
 import { useState } from 'react';
 import MenuComponent from '../../components/menuComponent/MenuComponent';
+import HomeComponent from '../../components/homeComponent/HomeComponent';
+import { HomeHeader } from '../../components/headers/HomeHeader';
 
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -31,36 +33,8 @@ export function HomeEquipaments() {
         <>
         <View style={styles.container}>
             {/* Header */}
-            <View style={styles.header}>
-                <View style={styles.profileSection}>
-                    <Image 
-                        source={require('../../../assets/images/profile/profile.png')}
-                        style={styles.profileImage}
-                    />
-                    <View style={styles.profileInfo}>
-                        <Text style={styles.profileName}>Fulano</Text>
-                        <Text style={styles.profileRole}>Administrador</Text>
-                    </View>
-                </View>
-                <TouchableOpacity style={styles.notificationButton}>
-                    <Notification size="32" color="#000000" />
-                </TouchableOpacity>
-            </View>
 
-            {/* Search Bar */}
-            <View style={styles.searchContainer}>
-                <View style={styles.searchBar}>
-                    <SearchNormal1 size={23} color="#AEAEAE" style={styles.searchIcon} />
-                    <TextInput 
-                        placeholder="Buscar..."
-                        style={styles.searchInput}
-                    />
-                </View>
-                <TouchableOpacity style={styles.filterButton}>
-                    <AddSquare size="23" color="#FFFFFF"/>
-                </TouchableOpacity>
-            </View>
-
+            <HomeHeader showProfileButton={false}/>
             {/* Equipment List Title */}
             <View style={styles.titleContainer}>
                 <Text style={styles.sectionTitle}>Todos os equipamentos (2)</Text>
