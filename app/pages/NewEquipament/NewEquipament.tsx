@@ -128,7 +128,7 @@ const UpdateUserData = ({}) => {
                     style={styles.components_low}
                 />
                 </View>
-            <BlueButton style={{width: 320}} title={'Finalizar edição'} />
+            <BlueButton style={{width: 320}} title={'Cadastrar'} />
         </ScrollView>
         </KeyboardAvoidingView>
         </View>
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
 
   description: {
     height: 117,
-    borderRadius: 25,
+    borderRadius: 35,
   },
 
   container_low: {
