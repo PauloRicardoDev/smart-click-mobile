@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
         padding: 20,
-        backgroundColor: 'rgb(247, 247, 247)',
+        backgroundColor: 'rgb(255, 255, 255)',
+        boxShadow: '0px -2px 10px rgba(0, 0, 0, 0.05)',
     },
     menuContainerItem: {
         alignItems: 'center'
