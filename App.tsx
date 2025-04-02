@@ -17,7 +17,7 @@ export default function App() {
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName="HomeTeste">
+                <Stack.Navigator initialRouteName="NewEquipament">
                     <Stack.Screen
                         name="Welcome"
                         component={Welcome}
