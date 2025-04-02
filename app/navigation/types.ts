@@ -5,4 +5,5 @@ export type RootStackParamList = {
     NewEquipament: undefined;
     HomeMessages: undefined;
     HomeTeste: undefined;
+    HomeEquipaments: undefined;
 };
