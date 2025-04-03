@@ -1,15 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useRef } from "react";
-import {
-  Image,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Controller, useForm } from "react-hook-form";
+import { Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Modalize } from "react-native-modalize";
 
@@ -23,15 +16,34 @@ type RegisterScreenNavigationProp = NativeStackNavigationProp<
   "Register"
 >;
 
+type FormDataProps = {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  consumerUnit: string;
+};
+
 export default function Register() {
-  const create = () => {
-    onOpen();
-  };
+  const { control, handleSubmit } = useForm<FormDataProps>();
+  const inputRef = useRef(null);
+
   const navigation = useNavigation<RegisterScreenNavigationProp>();
   const modalizeRef = useRef<Modalize>(null);
+
+  //abre o modal do caso positivo
   const onOpen = () => {
     modalizeRef.current?.open();
   };
+
+  async function handleCreateAccount(data: FormDataProps) {
+    try {
+      console.log(data);
+      onOpen();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const PanelContent = () => (
     <View style={styles.panelContent}>
@@ -80,42 +92,70 @@ export default function Register() {
               Preencha os campos abaixo com atenção
             </Text>
 
-            <InputComponent
-              placeholder="Digite seu nome completo"
-              keyboardType="default"
-              maxLength={200}
+            <Controller
+              name="name"
+              control={control}
+              render={({ field: { onChange } }) => (
+                <InputComponent
+                  placeholder="Digite seu nome completo"
+                  keyboardType="default"
+                  maxLength={200}
+                  onChangeText={onChange}
+                />
+              )}
             />
-            <InputComponent
-              placeholder="Digite seu e-mail"
-              keyboardType="email-address"
-              maxLength={150}
+
+            <Controller
+              name="email"
+              control={control}
+              render={({ field: { onChange } }) => (
+                <InputComponent
+                  placeholder="Digite seu e-mail"
+                  keyboardType="email-address"
+                  maxLength={150}
+                  onChangeText={onChange}
+                />
+              )}
             />
-            <InputComponent
-              placeholder="Digite uma senha"
-              keyboardType="default"
-              secureTextEntry={true}
-              maxLength={15}
+
+            <Controller
+              name="password"
+              control={control}
+              render={({ field: { onChange } }) => (
+                <InputComponent
+                  placeholder="Digite uma senha"
+                  keyboardType="default"
+                  secureTextEntry={true}
+                  maxLength={15}
+                  onChangeText={onChange}
+                />
+              )}
             />
-            <InputComponent
-              placeholder="Confirme a senha"
-              keyboardType="default"
-              secureTextEntry={true}
-              maxLength={15}
-            />
-            <InputComponent
-              placeholder="Número da Unidade Consumidora"
-              keyboardType="number-pad"
-              maxLength={200}
+
+            <Controller
+              name="confirmPassword"
+              control={control}
+              render={({ field: { onChange } }) => (
+                <InputComponent
+                  placeholder="Confirme a senha"
+                  keyboardType="default"
+                  secureTextEntry={true}
+                  maxLength={15}
+                  onChangeText={onChange}
+                />
+              )}
             />
 
             <CustomButton
               variant="blue"
               style={styles.registerButton}
               title={"Cadastrar"}
-              onPress={create}
+              onPress={handleSubmit(handleCreateAccount)}
             />
           </ScrollView>
         </KeyboardAvoidingView>
+
+        {/* TODO: se nao conseguir criar uma conta, criar um modalize para o erro */}
         <Modalize
           ref={modalizeRef}
           adjustToContentHeight={true}
