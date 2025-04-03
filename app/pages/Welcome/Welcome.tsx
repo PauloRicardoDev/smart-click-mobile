@@ -13,9 +13,7 @@ import {
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Modalize } from "react-native-modalize";
 
-import BlueBorderButton from "../../components/buttonsComponents/BlueBorderButton";
 import CustomButton from "../../components/buttonsComponents/CustomButton";
-import GreenBorderButton from "../../components/buttonsComponents/GreenBorderButton";
 import InputComponent from "../../components/InputComponent/InputComponent";
 import { RootStackParamList } from "../../navigation/types";
 
@@ -75,7 +73,8 @@ export default function Welcome() {
             Esqueci a senha!
           </Text>
         </TouchableOpacity>
-        <GreenBorderButton
+        <CustomButton
+          variant="greenTransparent"
           style={{ width: 320 }}
           title={"Criar Conta"}
           onPress={() => navigation.navigate("Register")}
@@ -96,7 +95,8 @@ export default function Welcome() {
           <Text style={styles.container_info_subtitle}>
             Mais controle, mais economia e mais sustentabilidade.
           </Text>
-          <GreenBorderButton
+          <CustomButton
+            variant="greenTransparent"
             style={{ width: 320 }}
             title={"Saiba mais"}
             onPress={handleOpenLink}
@@ -108,7 +108,8 @@ export default function Welcome() {
               title={"Entrar"}
               onPress={onOpen}
             />
-            <BlueBorderButton
+            <CustomButton
+              variant="blueTransparent"
               style={{ width: 155 }}
               title={"Criar Conta"}
               onPress={() => navigation.navigate("Register")}

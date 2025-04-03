@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import BlueBorderButton from "../../components/buttonsComponents/BlueBorderButton";
 import CustomButton from '../../components/buttonsComponents/CustomButton';
-import GreenBorderButton from "../../components/buttonsComponents/GreenBorderButton";
 import InputComponent from "../../components/InputComponent/InputComponent";
-import ReturnButton from "../../components/ReturnButtonComponents/ReturnButton";
 
 const UpdateUserData = ({}) => {
   const handlePress = () => {
