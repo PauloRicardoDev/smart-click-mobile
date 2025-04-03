@@ -4,7 +4,6 @@ import Animated, { interpolate, SharedValue, useAnimatedStyle } from 'react-nati
 import SliderItem from "./SliderItem";
 import { ImageSliderType } from "./Carousel";
 
-
 const { width } = Dimensions.get("screen");
 
 type Props = {
