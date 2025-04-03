@@ -4,9 +4,7 @@ import React, { useRef, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Modalize } from "react-native-modalize";
 
-import BlueBorderButton from "../../components/buttonsComponents/BlueBorderButton";
 import CustomButton from "../../components/buttonsComponents/CustomButton";
-import GreenBorderButton from "../../components/buttonsComponents/GreenBorderButton";
 import InputComponent from "../../components/InputComponent/InputComponent";
 import ReturnButton from "../../components/ReturnButtonComponents/ReturnButton";
 import { RootStackParamList } from "../../navigation/types";
