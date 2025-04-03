@@ -1,6 +1,6 @@
 import { FlatList, Image, StyleSheet, Text, View, Dimensions } from "react-native";
 import React from 'react';
-import { ImageSliderType } from "./Slider";
+import { ImageSliderType } from "./Carousel";
 import { faAlignJustify } from "@fortawesome/free-solid-svg-icons";
 
 
