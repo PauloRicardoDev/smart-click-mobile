@@ -1,16 +1,9 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TextStyle,
-  TouchableOpacity,
-  TouchableOpacityProps,
-  ViewStyle,
-} from "react-native";
+import { StyleSheet, Text, TextStyle, TouchableOpacity, TouchableOpacityProps, ViewStyle } from "react-native";
 
 import { Loading } from "../Loading/Loading";
 
-// Definindo os tipos de variantes de botão
+// Definindo os tipos de variantes de botão atuais
 export type ButtonVariant = "blue" | "blueTransparent" | "greenTransparent";
 
 interface CustomButtonProps extends TouchableOpacityProps {
