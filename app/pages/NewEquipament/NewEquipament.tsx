@@ -2,19 +2,12 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import {
-  Image,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Button, Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SelectCountry } from "react-native-element-dropdown";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import BlueButton from "../../components/buttonsComponents/BlueButton";
+import CustomButton from "../../components/buttonsComponents/CustomButton";
 import InputComponent from "../../components/InputComponent/InputComponent";
 import ReturnButton from "../../components/ReturnButtonComponents/ReturnButton";
 import { RootStackParamList } from "../../navigation/types";
@@ -225,12 +218,11 @@ const UpdateUserData = () => {
               />
             </View>
 
-            <BlueButton
-              style={styles.submitButton}
+            <CustomButton
               title="Cadastrar"
               onPress={handleSubmit(handleCreateEquipament)}
-              isLoading={isLoading}
               disabled={isLoading}
+              variant="blue"
             />
           </ScrollView>
         </KeyboardAvoidingView>
