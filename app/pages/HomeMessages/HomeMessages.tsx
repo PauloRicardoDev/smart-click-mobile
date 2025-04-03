@@ -145,14 +145,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginRight: 15,
         backgroundColor: '#FCFCFC', // Cor de fundo da área dentro do ícone
-        shadowColor: 'rgba(0, 0, 0, 0.7)',  // Cor da sombra com 30% de opacidade (ajuste o valor de 0 a 1)
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 1, // Opacidade da sombra (100% de visibilidade)
-        shadowRadius: 4,  // Raio da sombra, ajusta o "desfoque"
-        elevation: 10,     // Efeito de sombra no Android (3D)
+        
     },
     messageContent: {
         flex: 1,
