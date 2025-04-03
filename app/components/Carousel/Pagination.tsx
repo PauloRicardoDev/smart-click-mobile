@@ -2,8 +2,7 @@ import { Dimensions, FlatList, StyleSheet, Text, View } from "react-native";
 import React from 'react';
 import Animated, { interpolate, SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import SliderItem from "./SliderItem";
-import { ImageSliderType } from "./Slider";
-
+import { ImageSliderType } from "./Carousel";
 
 const { width } = Dimensions.get("screen");
 

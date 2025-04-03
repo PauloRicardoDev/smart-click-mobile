@@ -8,8 +8,8 @@ import { HomeHeader } from "../../components/headers/HomeHeader";
 import MenuComponent from "../../components/menuComponent/MenuComponent";
 import { UserPhoto } from "../../components/UserComponents/UserPhoto";
 import ReturnButton from "../../components/ReturnButtonComponents/ReturnButton";
-import Slider from "../../components/Carousel/Slider";
-import { ImageSlider } from "../../components/Carousel/Slider";
+import Carousel from "../../components/Carousel/Carousel";
+import { ImageSlider } from "../../components/Carousel/Carousel";
 
 const { width } = Dimensions.get("window");
 
@@ -74,7 +74,7 @@ export default function Equipaments() {
                     </View>
                     {/* <Carousel/> */}
                     
-                    <Slider itemList={ImageSlider} />
+                    <Carousel itemList={ImageSlider} />
 
 
                 </View>
