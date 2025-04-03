@@ -107,7 +107,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 20,
     margin: 10,
-    elevation: 3,
   },
   contentContainer: {
     flexDirection: 'row',
@@ -150,6 +149,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   profileButton: {
+    elevation: 3,
     flexDirection: 'row',
     height: 45,
     borderRadius: 30,
