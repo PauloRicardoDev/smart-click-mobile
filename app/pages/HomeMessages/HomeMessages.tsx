@@ -84,7 +84,7 @@ const MessageItem = ({ title, subtitle, time }: { title: string; subtitle: strin
         </View>
         <Text style={styles.messageTime}>{time}</Text>
     </TouchableOpacity>
-);
+); 
 
 const styles = StyleSheet.create({
     container: {

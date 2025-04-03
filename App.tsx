@@ -2,7 +2,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-
 import { RootStackParamList } from "./app/navigation/types";
 import HomeMessages from './app/pages/HomeMessages/HomeMessages'
 import HomeTeste from './app/pages/HomeTeste/HomeTeste';
@@ -11,6 +10,7 @@ import Register from "./app/pages/Register/Register";
 import ResetPassword from './app/pages/ResetPassword/ResetPassword';
 import Welcome from './app/pages/Welcome/Welcome';
 import { HomeEquipaments } from './app/pages/HomeEquipaments/HomeEquipaments'
+import Home from './app/pages/Home/Home';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -18,7 +18,7 @@ export default function App() {
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName="HomeTeste">
+                <Stack.Navigator initialRouteName="Home">
                     <Stack.Screen
                         name="Welcome"
                         component={Welcome}
@@ -45,14 +45,14 @@ export default function App() {
                         options={{ headerShown: false }}
                     />
 
-                    <Stack.Screen 
+                    <Stack.Screen
                         name='HomeEquipaments'
                         component={HomeEquipaments}
                         options={{ headerShown: false }}
                     />
-                    <Stack.Screen 
-                        name='HomeTeste'
-                        component={HomeTeste}
+                    <Stack.Screen
+                        name='Home'
+                        component={Home}
                         options={{ headerShown: false }}
                     />
                 </Stack.Navigator>
