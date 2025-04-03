@@ -3,16 +3,16 @@ import { View, StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
 // Definindo os tipos para as propriedades do componente
-type StatusIconProps = {
+type IconComponentProps = {
   status: 'error' | 'success'; // Pode ser "error" ou "success"
   size?: number; // Tamanho do ícone, padrão é 24
 };
 
-const StatusIcon: React.FC<StatusIconProps> = ({ status, size = 24 }) => {
+const IconComponent: React.FC<IconComponentProps> = ({ status, size = 24 }) => {
   return (
     <View
       style={[
-        styles.statusIcon,
+        styles.IconComponent,
         { backgroundColor: status === 'error' ? '#FFE9E9' : '#E9FFE9' }
       ]}
     >
@@ -27,7 +27,7 @@ const StatusIcon: React.FC<StatusIconProps> = ({ status, size = 24 }) => {
 
 // Estilos para o ícone
 const styles = StyleSheet.create({
-  statusIcon: {
+  IconComponent: {
     width: 40,
     height: 40,
     borderRadius: 20,
@@ -36,4 +36,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StatusIcon;
+export default IconComponent;

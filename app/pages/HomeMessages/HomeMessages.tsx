@@ -1,31 +1,15 @@
-import { FontAwesome } from '@expo/vector-icons';
-import { Notification } from 'iconsax-react-native';
 import { Setting4 } from 'iconsax-react-native';
 import { SearchNormal1 } from 'iconsax-react-native';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { HomeHeader } from '../../components/headers/HomeHeader';
 
 export default function HomeMessages() {
     return (
         <>
         <View style={styles.container}>
-            {/* Header */}
-            <View style={styles.header}>
-                <View style={styles.profileSection}>
-                    <Image 
-                        source={require('../../../assets/images/profile/profile.png')}
-                        style={styles.profileImage}
-                    />
-                    <View style={styles.profileInfo}>
-                        <Text style={styles.profileName}>Fulano</Text>
-                        <Text style={styles.profileRole}>Administrador</Text>
-                    </View>
-                </View>
-                <TouchableOpacity style={styles.notificationButton}>
-    <Notification size="32" color="#000000" />
-</TouchableOpacity>
-
-            </View>
-
+            {/* Componente HomeHeader */}
+            <HomeHeader showProfileButton={true} />
+            
             {/* Search Bar */}
             <View style={styles.searchContainer}>
                 <View style={styles.searchBar}>
@@ -36,14 +20,12 @@ export default function HomeMessages() {
                     />
                 </View>
                 <TouchableOpacity style={styles.filterButton}>
-                <Setting4 size="25" color="#FFFFFF"/>
+                    <Setting4 size="25" color="#FFFFFF"/>
                 </TouchableOpacity>
             </View>
 
-            {/* Recent Messages Title */}
             <Text style={styles.sectionTitle}>Mensagens recentes</Text>
 
-            {/* Messages List */}
             <ScrollView style={styles.messagesList}>
                 <MessageItem 
                     title="Uso mensal"
@@ -91,42 +73,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#fff",
         paddingTop: 40,
-    },
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-    },
-    profileSection: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    profileImage: {
-        width: 60,
-        height: 60,
-        borderRadius: 12,
-        borderWidth: 2,
-        borderColor: '#fff',
-        marginRight: 12,
-    },
-    profileInfo: {
-        marginLeft: 10,
-    },
-    profileName: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 5,
-    },
-    profileRole: {
-        fontSize: 12,
-        color: '#666',
-        fontWeight: 'normal',
-        marginBottom: 7,
-    },
-    notificationButton: {
-        padding: 10,
     },
     searchContainer: {
         flexDirection: 'row',
