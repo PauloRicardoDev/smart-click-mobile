@@ -1,12 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useRef } from "react";
-
 import { Controller, useForm } from "react-hook-form";
-import { Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
-
+import { Image, KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Modalize } from "react-native-modalize";
+import Toast from "react-native-toast-message";
 
 import CustomButton from "../../components/buttonsComponents/CustomButton";
 import InputComponent from "../../components/InputComponent/InputComponent";
@@ -27,7 +26,6 @@ type FormDataProps = {
 };
 
 export default function Register() {
-
   const { control, handleSubmit } = useForm<FormDataProps>();
   const inputRef = useRef(null);
 
@@ -39,12 +37,24 @@ export default function Register() {
     modalizeRef.current?.open();
   };
 
+  const showToast = () => {
+    Toast.show({
+      type: "error",
+      text1: "Erro ao criar conta",
+      position: "top",
+      visibilityTime: 2000,
+      autoHide: true,
+      topOffset: Platform.OS === "ios" ? 120 : 20,
+    });
+    console.log("Toast chamado");
+  };
+
   async function handleCreateAccount(data: FormDataProps) {
     try {
       console.log(data);
-      onOpen();
     } catch (error) {
       console.log(error);
+      showToast();
     }
   }
 
@@ -147,7 +157,6 @@ export default function Register() {
                   onChangeText={onChange}
                 />
               )}
-
             />
 
             <CustomButton
