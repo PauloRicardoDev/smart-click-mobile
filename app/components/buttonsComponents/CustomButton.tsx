@@ -1,4 +1,5 @@
 import React from "react";
+
 import { StyleSheet, Text, TextStyle, TouchableOpacity, TouchableOpacityProps, ViewStyle } from "react-native";
 
 import { Loading } from "../Loading/Loading";

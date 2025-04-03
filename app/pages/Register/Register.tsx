@@ -1,8 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useRef } from "react";
+
 import { Controller, useForm } from "react-hook-form";
 import { Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Modalize } from "react-native-modalize";
 
@@ -25,6 +27,7 @@ type FormDataProps = {
 };
 
 export default function Register() {
+
   const { control, handleSubmit } = useForm<FormDataProps>();
   const inputRef = useRef(null);
 
@@ -144,6 +147,7 @@ export default function Register() {
                   onChangeText={onChange}
                 />
               )}
+
             />
 
             <CustomButton
