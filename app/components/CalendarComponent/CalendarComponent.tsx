@@ -1,16 +1,16 @@
+import React, { useRef, useState } from "react";
 import { ArrowLeft2 } from "iconsax-react-native";
-import { useRef, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Calendar } from "react-native-calendars";
 import { Modalize } from "react-native-modalize";
+import  CustomButton  from '../../components/buttonsComponents/CustomButton'; 
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import CustomButton from "../../components/buttonsComponents/CustomButton";
-import { HomeHeader } from "../../components/headers/HomeHeader";
-import MenuComponent from "../../components/menuComponent/MenuComponent";
-import { UserPhoto } from "../../components/UserComponents/UserPhoto";
+type CalendarComponentProps = {
+  onSelectPeriod: (startDate: string, endDate: string) => void; // Callback para passar a seleção de período
+};
 
-export default function HomeTeste() {
+const CalendarComponent: React.FC<CalendarComponentProps> = ({ onSelectPeriod }) => {
   const modalizeRef = useRef<Modalize>(null);
   const [selectedStartDate, setSelectedStartDate] = useState("");
   const [selectedEndDate, setSelectedEndDate] = useState("");
@@ -83,22 +83,7 @@ export default function HomeTeste() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        {/* Header */}
-        <HomeHeader showProfileButton={true} />
-
-        {/* Conteúdo principal */}
-        <View style={styles.content}>
-          <CustomButton
-            variant="blue"
-            title="Gerar Relatório"
-            onPress={onOpen}
-          />
-        </View>
-
-        {/* Menu fixo na parte inferior */}
-        <MenuComponent title={"Menu"} />
-
-        {/* Modal do Calendário */}
+        {/* Calendário */}
         <Modalize
           ref={modalizeRef}
           adjustToContentHeight
@@ -112,7 +97,7 @@ export default function HomeTeste() {
                 <ArrowLeft2 size={24} color="#1B4274" />
               </TouchableOpacity>
               <Text style={styles.modalTitle}>
-                Selecione um período{"\n"}para o relatório
+                Selecione um período
               </Text>
             </View>
           }
@@ -157,10 +142,10 @@ export default function HomeTeste() {
             </View>
             <CustomButton
               variant="blue"
-              title="Gerar Relatório"
+              title="Confirmar"
               onPress={() => {
                 modalizeRef.current?.close();
-                // Adicione aqui a lógica para gerar o relatório
+                onSelectPeriod(selectedStartDate, selectedEndDate);
               }}
               style={styles.generateButton}
             />
@@ -169,7 +154,7 @@ export default function HomeTeste() {
       </View>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -178,11 +163,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-  },
-  content: {
-    flex: 1,
-    justifyContent: "center",
-    paddingHorizontal: 20,
   },
   modal: {
     backgroundColor: "#fff",
@@ -232,3 +212,5 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+
+export default CalendarComponent;

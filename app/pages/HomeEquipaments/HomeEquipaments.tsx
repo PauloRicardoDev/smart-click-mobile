@@ -1,4 +1,3 @@
-import { FontAwesome } from '@expo/vector-icons';
 import { Notification, Setting4, SearchNormal1, Add, AddSquare } from 'iconsax-react-native';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useNavigation } from '@react-navigation/native';
@@ -7,6 +6,8 @@ import { RootStackParamList } from '../../navigation/types';
 import { useState } from 'react';
 import MenuComponent from '../../components/menuComponent/MenuComponent';
 import { HomeHeader } from '../../components/headers/HomeHeader';
+import { FontAwesome } from '@expo/vector-icons';
+import IconComponent from '../../components/IconComponent/IconComponent';
 
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -14,17 +15,15 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 export function HomeEquipaments() {
     const navigation = useNavigation<NavigationProp>();
 
-    // Definindo o estado para controlar a expansão de cada item
     const [expandedItems, setExpandedItems] = useState({
         'Equipamento de teste': false,
-        'Placa de teste': true,
+        'Placa de teste': false,
     });
 
-    // Função para alternar o estado de expansão
     const toggleExpand = (name: string) => {
         setExpandedItems(prevState => ({
             ...prevState,
-            [name]: !prevState[name as keyof typeof prevState], // Alterna entre expandido e fechado
+            [name]: !prevState[name as keyof typeof prevState],
         }));
     };
 
@@ -98,11 +97,7 @@ const EquipmentItem = ({
             styles.statusIcon,
             { backgroundColor: status === 'error' ? '#FFE9E9' : '#E9FFE9' }
         ]}>
-            <FontAwesome
-                name="circle-o"
-                size={24}
-                color={status === 'error' ? '#FF0000' : '#00FF00'}
-            />
+            <IconComponent status={status} size={24} />
         </View>
         <View style={styles.equipmentContent}>
             <Text style={styles.equipmentName}>{name}</Text>
@@ -134,71 +129,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingVertical: 10,
-    },
-    profileSection: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    profileImage: {
-        width: 60,
-        height: 60,
-        borderRadius: 12,
-        borderWidth: 2,
-        borderColor: '#fff',
-        marginRight: 12,
-    },
-    profileInfo: {
-        marginLeft: 10,
-    },
-    profileName: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 5,
-    },
-    profileRole: {
-        fontSize: 12,
-        color: '#666',
-        fontWeight: 'normal',
-        marginBottom: 7,
-    },
-    notificationButton: {
-        padding: 10,
-        position: 'absolute',
-        right: 15, // Ajuste a distância da borda direita conforme necessário
-        top: 10,   // Ajuste a distância do topo, se necessário
-    },
-    searchContainer: {
-        flexDirection: 'row',
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        alignItems: 'center',
-        gap: 10,
-    },
-    searchBar: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-        borderRadius: 10,
-        paddingHorizontal: 15,
-        borderWidth: 2,
-        borderColor: '#fff',
-    },
-    searchIcon: {
-        marginRight: 10,
-    },
-    searchInput: {
-        flex: 1,
-        height: 40,
-        fontSize: 16,
-    },
-    filterButton: {
-        backgroundColor: '#1B3B72',
-        width: 40,
-        height: 40,
-        borderRadius: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     titleContainer: {
         paddingHorizontal: 20,
