@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
-import ReturnButton from "../../components/ReturnButtonComponents/ReturnButton";
+import { Image, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
+import CustomButton from '../../components/buttonsComponents/CustomButton';
 import InputComponent from "../../components/InputComponent/InputComponent";
-import BlueButton from "../../components/buttonsComponents/BlueButton";
-import GreenBorderButton from "../../components/buttonsComponents/GreenBorderButton";
-import BlueBorderButton from "../../components/buttonsComponents/BlueBorderButton";
 
 const UpdateUserData = ({}) => {
   const handlePress = () => {
@@ -61,7 +59,7 @@ const UpdateUserData = ({}) => {
                 secureTextEntry={true}
                 maxLength={15}
             />
-            <BlueButton style={{width: 320}} title={'Finalizar edição'} />
+            <CustomButton variant='blue' style={{width: 320}} title={'Finalizar edição'} />
         </ScrollView>
         </KeyboardAvoidingView>
         </View>
