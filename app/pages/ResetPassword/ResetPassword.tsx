@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useRef, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Modalize } from "react-native-modalize";
 
@@ -14,10 +15,29 @@ type ResetScreenNavigationProp = NativeStackNavigationProp<
   "Reset"
 >;
 
+type FormDataProps = {
+  email: string;
+};
+
 const ResetPassword = ({}) => {
   const handlePress = () => {};
-
   const [showResetForm, setShowResetForm] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const { control, handleSubmit } = useForm<FormDataProps>();
+
+  // Deve envia para o email o código de recuperação por meio de envio de um token via email
+  async function handleResetPassword(data: FormDataProps) {
+    try {
+      setIsLoading(true);
+      console.log(data);
+      sendToken();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   const sendToken = () => {
     setShowResetForm(!showResetForm);
@@ -71,11 +91,27 @@ const ResetPassword = ({}) => {
 
         {!showResetForm && (
           <>
-            <InputComponent keyboardType="email-address" placeholder="Email" />
+            <Controller
+              name="email"
+              control={control}
+              render={({ field: { onChange } }) => (
+                <InputComponent
+                  placeholder="Digite seu e-mail"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  autoComplete="email"
+                  textContentType="emailAddress"
+                  keyboardType="email-address"
+                  maxLength={150}
+                  onChangeText={onChange}
+                />
+              )}
+            />
             <CustomButton
               variant="blue"
               title="Enviar"
-              onPress={sendToken}
+              onPress={handleSubmit(handleResetPassword)}
+              isLoading={isLoading}
               style={{ width: 320 }}
             />
           </>
@@ -136,7 +172,7 @@ const styles = StyleSheet.create({
   },
 
   returnButton: {
-    marginTop: 32,
+    marginTop: 60,
     marginLeft: 32,
     position: "absolute",
     top: 0,
