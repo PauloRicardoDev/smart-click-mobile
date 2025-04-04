@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {View, Text, TouchableOpacity, StyleSheet, Image} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MenuComponent from "../../components/menuComponent/MenuComponent";
 import { HomeHeader } from "../../components/headers/HomeHeader";
@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { SelectCountry } from 'react-native-element-dropdown';
 import { AlignBottom, Buildings, MoneySend, ArrowCircleRight2 } from 'iconsax-react-native';
-import HomeMessages from "../HomeMessages/HomeMessages";
+import CardMsgsComponent from "../../components/CardMsgsComponent/CardMsgsComponent";
 
 type FormDataProps = {
     equipmentName: string;
@@ -68,6 +68,19 @@ export default function Home() {
         },
     ];
 
+    const ImageSliderCarousel = [
+        {
+            title: "Consumo (KWh)",
+            image: require("../../../assets/images/notificaSmart.png"),
+            description: "De 02/10/2024 00:00 a 02/10/2024 23:59"
+        },
+        {
+            title: "Teste2",
+            image: require("../../../assets/images/notificaSmart.png"),
+            description: "Teste2"
+        },
+    ];
+
     return (
         <SafeAreaView style={styles.container}>
             <HomeHeader showProfileButton={true} />
@@ -105,18 +118,32 @@ export default function Home() {
                         <CardsIndcators usoMensal={122} potAcumulada={1233} equipamentos={12} />
                     </View>
                 </View>
+                <View style={{
+                    width: '100%',
+                    height: 150,
+                    backgroundColor: "#ffffff",
+                    borderRadius: 25,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    boxShadow: "0px 2px 7px rgba(0, 0, 0, 0.1)",
+                }}>
+                    <Text>Add Carrossel</Text>
+                </View>
                 <View style={styles.containerInfosLastMsg}>
                     <View style={styles.containerInfosLastMsgHeader}>
                         <Text style={styles.containerInfosLastMsgHeaderTitle}>Mensagens recentes</Text>
-                        <View style={{ flexDirection: 'row', alignItems: "center", gap: 2 }}>
+                        <View style={styles.containerInfosLastMsgHeaderNext}>
                             <Text>ver mais</Text>
                             <TouchableOpacity>
-                                <ArrowCircleRight2 size="50" color="#1C5790" variant="Bold" />
+                                <ArrowCircleRight2 size="40" color="#1C5790" variant="TwoTone" />
                             </TouchableOpacity>
                         </View>
                     </View>
-
-                    
+                    <CardMsgsComponent
+                        title="Beltrano"
+                        subtitle="Assunto: ..."
+                        time="3h"
+                    />
                 </View>
             </View>
             <MenuComponent />
@@ -139,7 +166,7 @@ const CardsIndcators: React.FC<cardsProps> = ({ ...props }) => {
             </View>
             <View style={styles.containerCardC}>
                 <MoneySend size="30" color="#4F7FAD" variant="TwoTone" />
-                <Text style={styles.containerCardCTitle}>{props.usoMensal}</Text>
+                <Text style={styles.containerCardCTitle}>R$ {props.usoMensal}</Text>
                 <Text style={styles.containerCardText}>Uso mensal</Text>
             </View>
         </View>
@@ -171,11 +198,16 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "#03314B"
     },
+    containerInfosLastMsgHeaderNext:{
+        flexDirection: 'row',
+        alignItems: "center",
+        gap: 5
+    },
 
     //containerInfosLastMsg
     containerInfosLastMsg: {
         marginVertical: 10,
-        gap: 10
+        gap: 15
     },
     containerInfosLastMsgHeader: {
         flexDirection: 'row',
@@ -271,5 +303,5 @@ const styles = StyleSheet.create({
         height: 40,
         fontSize: 16,
         borderRadius: 15,
-    },
+    }
 });
