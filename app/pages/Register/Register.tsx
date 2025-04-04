@@ -125,6 +125,10 @@ export default function Register() {
                 <InputComponent
                   placeholder="Digite seu e-mail"
                   keyboardType="email-address"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  autoComplete="email"
+                  textContentType="emailAddress"
                   maxLength={150}
                   onChangeText={onChange}
                 />
