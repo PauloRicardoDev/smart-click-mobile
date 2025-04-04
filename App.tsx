@@ -12,6 +12,7 @@ import Register from "./app/pages/Register/Register";
 import ResetPassword from "./app/pages/ResetPassword/ResetPassword";
 import Welcome from "./app/pages/Welcome/Welcome";
 import Home from "./app/pages/Home/Home";
+import Unidades from "./app/pages/Unidades/Unidades";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -20,7 +21,7 @@ export default function App() {
       <>
         <GestureHandlerRootView style={{ flex: 1 }}>
           <NavigationContainer>
-            <Stack.Navigator initialRouteName="Welcome">
+            <Stack.Navigator initialRouteName="Home">
               <Stack.Screen
                   name="Welcome"
                   component={Welcome}
@@ -49,12 +50,12 @@ export default function App() {
 
               <Stack.Screen
                   name="HomeEquipaments"
-                  component={HomeEquipaments}
+                  component={ HomeEquipaments}
                   options={{ headerShown: false }}
               />
               <Stack.Screen
-                  name="HomeTeste"
-                  component={HomeTeste}
+                  name="Unidades"
+                  component={Unidades}
                   options={{ headerShown: false }}
               />
               <Stack.Screen
