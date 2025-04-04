@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Modalize } from "react-native-modalize";
+import Toast from "react-native-toast-message";
 
 import CustomButton from "../../components/buttonsComponents/CustomButton";
 import InputComponent from "../../components/InputComponent/InputComponent";
@@ -31,9 +32,35 @@ const ResetPassword = ({}) => {
     try {
       setIsLoading(true);
       console.log(data);
+
+      const isUserExists = false; // Simulação de verificação de usuário
+
+      if (!isUserExists) {
+        throw new Error("Usuário não encontrado");
+      }
+
       sendToken();
+      Toast.show({
+        type: "success",
+        text1: "Código enviado com sucesso",
+        text2: "Verifique seu e-mail para redefinir sua senha.",
+        position: "top",
+        visibilityTime: 2000,
+        autoHide: true,
+        topOffset: 100,
+      });
     } catch (error) {
       console.log(error);
+
+      Toast.show({
+        type: "error",
+        text1: "Erro ao enviar o código",
+        text2: "Usuário não encontrado!",
+        position: "top",
+        visibilityTime: 2000,
+        autoHide: true,
+        topOffset: 100,
+      });
     } finally {
       setIsLoading(false);
     }
