@@ -19,7 +19,7 @@ export default function App() {
     <>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="HomeMessages">
+          <Stack.Navigator initialRouteName="Reset">
             <Stack.Screen
               name="Welcome"
               component={Welcome}

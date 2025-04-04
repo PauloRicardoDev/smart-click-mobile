@@ -1,8 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useRef, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Modalize } from "react-native-modalize";
+import Toast from "react-native-toast-message";
 
 import CustomButton from "../../components/buttonsComponents/CustomButton";
 import InputComponent from "../../components/InputComponent/InputComponent";
@@ -14,10 +16,55 @@ type ResetScreenNavigationProp = NativeStackNavigationProp<
   "Reset"
 >;
 
+type FormDataProps = {
+  email: string;
+};
+
 const ResetPassword = ({}) => {
   const handlePress = () => {};
-
   const [showResetForm, setShowResetForm] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const { control, handleSubmit } = useForm<FormDataProps>();
+
+  // Deve envia para o email o código de recuperação por meio de envio de um token via email
+  async function handleResetPassword(data: FormDataProps) {
+    try {
+      setIsLoading(true);
+      console.log(data);
+
+      const isUserExists = false; // Simulação de verificação de usuário
+
+      if (!isUserExists) {
+        throw new Error("Usuário não encontrado");
+      }
+
+      sendToken();
+      Toast.show({
+        type: "success",
+        text1: "Código enviado com sucesso",
+        text2: "Verifique seu e-mail para redefinir sua senha.",
+        position: "top",
+        visibilityTime: 2000,
+        autoHide: true,
+        topOffset: 100,
+      });
+    } catch (error) {
+      console.log(error);
+
+      Toast.show({
+        type: "error",
+        text1: "Erro ao enviar o código",
+        text2: "Usuário não encontrado!",
+        position: "top",
+        visibilityTime: 2000,
+        autoHide: true,
+        topOffset: 100,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   const sendToken = () => {
     setShowResetForm(!showResetForm);
@@ -71,11 +118,27 @@ const ResetPassword = ({}) => {
 
         {!showResetForm && (
           <>
-            <InputComponent keyboardType="email-address" placeholder="Email" />
+            <Controller
+              name="email"
+              control={control}
+              render={({ field: { onChange } }) => (
+                <InputComponent
+                  placeholder="Digite seu e-mail"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  autoComplete="email"
+                  textContentType="emailAddress"
+                  keyboardType="email-address"
+                  maxLength={150}
+                  onChangeText={onChange}
+                />
+              )}
+            />
             <CustomButton
               variant="blue"
               title="Enviar"
-              onPress={sendToken}
+              onPress={handleSubmit(handleResetPassword)}
+              isLoading={isLoading}
               style={{ width: 320 }}
             />
           </>
@@ -136,7 +199,7 @@ const styles = StyleSheet.create({
   },
 
   returnButton: {
-    marginTop: 32,
+    marginTop: 60,
     marginLeft: 32,
     position: "absolute",
     top: 0,
@@ -179,6 +242,7 @@ const styles = StyleSheet.create({
   redefineSubText: {
     fontSize: 14,
     color: "#1C5790",
+    margin: 2,
   },
 
   redefineSubTextEmail: {
