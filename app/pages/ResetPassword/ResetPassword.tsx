@@ -215,6 +215,7 @@ const styles = StyleSheet.create({
   redefineSubText: {
     fontSize: 14,
     color: "#1C5790",
+    margin: 2,
   },
 
   redefineSubTextEmail: {
