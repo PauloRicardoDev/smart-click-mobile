@@ -3,7 +3,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Toast from "react-native-toast-message";
-
 import { RootStackParamList } from "./app/navigation/types";
 import { HomeEquipaments } from "./app/pages/HomeEquipaments/HomeEquipaments";
 import HomeMessages from "./app/pages/HomeMessages/HomeMessages";
