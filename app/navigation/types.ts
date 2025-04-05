@@ -8,4 +8,5 @@ export type RootStackParamList = {
     HomeEquipaments: undefined;
     Home: undefined;
     Unidades: undefined;
+    Equipament: undefined;
 };

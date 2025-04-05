@@ -22,6 +22,11 @@ export const ImageSlider = [
     image: require("../../../assets/images/graphic1.png"),
     description: "Teste2"
     },
+    {
+    title: "Teste2",
+    image: require("../../../assets/images/graphic1.png"),
+    description: "Teste2"
+    },
 ];
 
 type Props = {
