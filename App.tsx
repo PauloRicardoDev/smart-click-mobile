@@ -13,61 +13,68 @@ import ResetPassword from "./app/pages/ResetPassword/ResetPassword";
 import Welcome from "./app/pages/Welcome/Welcome";
 import Home from "./app/pages/Home/Home";
 import Unidades from "./app/pages/Unidades/Unidades";
+import Equipament from "./app/pages/Equipament/Equipament";
+
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
-      <>
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
-              <Stack.Screen
-                  name="Welcome"
-                  component={Welcome}
-                  options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                  name="Register"
-                  component={Register}
-                  options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                  name="Reset"
-                  component={ResetPassword}
-                  options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                  name="NewEquipament"
-                  component={NewEquipament}
-                  options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                  name="HomeMessages"
-                  component={HomeMessages}
-                  options={{ headerShown: false }}
-              />
+    <>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen
+              name="Welcome"
+              component={Welcome}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Register"
+              component={Register}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Reset"
+              component={ResetPassword}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="NewEquipament"
+              component={NewEquipament}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="HomeMessages"
+              component={HomeMessages}
+              options={{ headerShown: false }}
+            />
 
-              <Stack.Screen
-                  name="HomeEquipaments"
-                  component={ HomeEquipaments}
-                  options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                  name="Unidades"
-                  component={Unidades}
-                  options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                  name="Home"
-                  component={Home}
-                  options={{ headerShown: false }}
-              />
-            </Stack.Navigator>
-            <StatusBar style="auto" />
-          </NavigationContainer>
-        </GestureHandlerRootView>
-        <Toast />
-      </>
+            <Stack.Screen
+              name="HomeEquipaments"
+              component={HomeEquipaments}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Unidades"
+              component={Unidades}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Equipament"
+              component={Equipament}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+          <StatusBar style="auto" />
+        </NavigationContainer>
+      </GestureHandlerRootView>
+      <Toast />
+    </>
   );
 }
